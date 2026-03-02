@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import logoHero from "@/assets/logo-hero.png";
 
 const HeroSection = () => {
   return (
@@ -12,6 +13,11 @@ const HeroSection = () => {
       />
       <div className="absolute inset-0 hero-overlay" />
       <div className="relative z-10 container px-4 text-center max-w-2xl mx-auto animate-fade-up">
+        <img
+          src={logoHero}
+          alt="Chérie Luxe"
+          className="mx-auto mb-6 h-28 sm:h-36 md:h-44 w-auto drop-shadow-lg"
+        />
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-primary-foreground leading-tight mb-4 drop-shadow-lg">
           Descubra Produtos Incríveis com Preços Imperdíveis!
         </h1>
