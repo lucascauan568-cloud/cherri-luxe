@@ -1,19 +1,15 @@
-import { Mail, Phone, Instagram, Facebook, Twitter } from "lucide-react";
-import logo from "@/assets/logo.png";
+import { Mail, Instagram, Facebook, Twitter } from "lucide-react";
+import logo from "@/assets/logo-hero.png";
 
 const FooterSection = () => {
   return (
     <footer className="bg-dark text-dark-foreground py-12">
       <div className="container px-4 max-w-4xl mx-auto">
         <div className="flex flex-col items-center text-center gap-6">
-          <img src={logo} alt="Chérie Luxe" className="h-12 w-auto brightness-200" />
+          <img src={logo} alt="Chérie Luxe" className="h-24 w-auto" />
 
           <div className="flex flex-col gap-1 text-sm text-dark-foreground/70">
-            <p>Duque de Caxias, RJ</p>
-            <div className="flex items-center justify-center gap-2">
-              <Phone className="h-4 w-4 text-gold" />
-              <span>(21) 93500-3179</span>
-            </div>
+            <p>Paraná - Brasil</p>
             <div className="flex items-center justify-center gap-2">
               <Mail className="h-4 w-4 text-gold" />
               <span>contato@recomendacoespremium.com</span>
