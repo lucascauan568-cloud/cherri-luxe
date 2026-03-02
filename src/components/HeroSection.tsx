@@ -1,22 +1,41 @@
+import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
 import logoHero from "@/assets/logo-hero.png";
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+import hero3 from "@/assets/hero-3.jpg";
+
+const slides = [hero1, hero2, hero3];
 
 const HeroSection = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-      <img
-        src={heroBg}
-        alt="Produtos premium em destaque"
-        className="absolute inset-0 w-full h-full object-cover"
-        loading="eager"
-      />
+      {slides.map((src, i) => (
+        <img
+          key={i}
+          src={src}
+          alt={`Mulher elegante ${i + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            i === current ? "opacity-100" : "opacity-0"
+          }`}
+          loading={i === 0 ? "eager" : "lazy"}
+        />
+      ))}
       <div className="absolute inset-0 hero-overlay" />
       <div className="relative z-10 container px-4 text-center max-w-2xl mx-auto animate-fade-up">
         <img
           src={logoHero}
           alt="Chérie Luxe"
-          className="mx-auto mb-6 h-72 sm:h-80 md:h-[28rem] w-auto drop-shadow-lg"
+          className="mx-auto mb-6 h-52 sm:h-64 md:h-80 w-auto drop-shadow-[0_4px_20px_rgba(255,255,255,0.3)]"
         />
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-primary-foreground leading-tight mb-4 drop-shadow-lg">
           Descubra Produtos Incríveis com Preços Imperdíveis!
@@ -29,11 +48,25 @@ const HeroSection = () => {
         </p>
         <a
           href="#produtos"
-          className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 gold-glow"
         >
           VER OFERTAS AGORA
           <ArrowRight className="h-5 w-5" />
         </a>
+
+        {/* Carousel indicators */}
+        <div className="flex justify-center gap-2 mt-8">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                i === current ? "bg-primary scale-125" : "bg-primary-foreground/40"
+              }`}
+              aria-label={`Slide ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
