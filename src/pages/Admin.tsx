@@ -17,32 +17,32 @@ const AdminLogin = ({ onLogin }: { onLogin: () => void }) => {
   };
 
   return (
-    <div className="min-h-screen bg-dark flex items-center justify-center p-4">
-      <div className="bg-card rounded-lg shadow-premium p-8 w-full max-w-sm">
-        <div className="flex items-center justify-center gap-2 mb-6">
-          <img src={logo} alt="Chérie Luxe" className="h-10 w-auto" />
-          <h1 className="text-xl font-bold text-foreground">Admin</h1>
-        </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="min-h-screen bg-gradient-to-br from-[hsl(300,15%,20%)] to-[hsl(320,30%,30%)] flex items-center justify-center p-4">
+      <div className="bg-card rounded-2xl shadow-premium p-8 w-full max-w-sm border border-primary/20">
+        <img src={logo} alt="Chérie Luxe" className="mx-auto mb-8 h-32 w-auto drop-shadow-lg" />
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-semibold text-foreground mb-1">Senha</label>
+            <label className="block text-sm font-semibold text-foreground mb-1.5">Senha</label>
             <input
               type="password"
               placeholder="Digite a senha secreta"
               value={password}
               onChange={(e) => { setPassword(e.target.value); setError(false); }}
-              className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-4 py-3 rounded-xl border border-primary/30 bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
             />
             {error && <p className="text-destructive text-xs mt-1">Senha incorreta</p>}
           </div>
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold py-3 rounded-lg hover:bg-primary/90 transition-colors"
+            className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold py-3 rounded-xl hover:bg-primary/90 transition-all gold-glow"
           >
             <LogIn className="h-4 w-4" />
             Entrar
           </button>
         </form>
+        <p className="text-center text-xs text-muted-foreground mt-6">
+          Chérie Luxe – Área Administrativa
+        </p>
       </div>
     </div>
   );
@@ -105,18 +105,18 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-dark">
-      <header className="bg-card border-b border-border px-4 py-4">
+    <div className="min-h-screen bg-gradient-to-br from-[hsl(300,15%,20%)] to-[hsl(320,30%,30%)]">
+      <header className="bg-card/90 backdrop-blur-md border-b border-primary/20 px-4 py-4">
         <div className="container flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <img src={logo} alt="Chérie Luxe" className="h-8 w-auto" />
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="Chérie Luxe" className="h-12 w-auto" />
             <h1 className="text-lg font-bold text-foreground">
               Área Admin – <span className="text-gold">Gerencie Seus Produtos</span>
             </h1>
           </div>
           <button
             onClick={handleSaveAll}
-            className="flex items-center gap-2 bg-primary text-primary-foreground font-semibold text-sm px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+            className="flex items-center gap-2 bg-primary text-primary-foreground font-semibold text-sm px-5 py-2.5 rounded-xl hover:bg-primary/90 transition-all gold-glow"
           >
             <Save className="h-4 w-4" />
             {saved ? "Salvo!" : "Salvar Tudo"}
@@ -125,14 +125,14 @@ const AdminDashboard = () => {
       </header>
 
       <div className="container px-4 py-8 max-w-3xl mx-auto space-y-6">
-        <div className="bg-gold/10 border border-gold/30 rounded-lg p-3 text-sm text-foreground">
+        <div className="bg-primary/10 border border-primary/30 rounded-xl p-3 text-sm text-primary-foreground">
           Esta área é exclusiva do dono do site – não visível para visitantes. Use para inserir produtos, links de afiliados e imagens personalizadas.
         </div>
 
         {!showForm && (
           <button
             onClick={() => setShowForm(true)}
-            className="flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-5 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+            className="flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-5 py-3 rounded-xl hover:bg-primary/90 transition-all"
           >
             <Plus className="h-5 w-5" />
             Adicionar Produto
@@ -140,7 +140,7 @@ const AdminDashboard = () => {
         )}
 
         {showForm && (
-          <div className="bg-card rounded-lg border border-primary/30 p-5 space-y-4">
+          <div className="bg-card rounded-xl border border-primary/30 p-5 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="font-bold text-foreground">
                 {editing ? "Editar Produto" : "Novo Produto"}
@@ -163,13 +163,13 @@ const AdminDashboard = () => {
                   placeholder={field.placeholder}
                   value={form[field.key]}
                   onChange={(e) => setForm((f) => ({ ...f, [field.key]: e.target.value }))}
-                  className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                  className="w-full px-4 py-2.5 rounded-xl border border-primary/20 bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm transition-all"
                 />
               </div>
             ))}
             <button
               onClick={editing ? handleUpdate : handleAdd}
-              className="w-full bg-primary text-primary-foreground font-bold py-3 rounded-lg hover:bg-primary/90 transition-colors"
+              className="w-full bg-primary text-primary-foreground font-bold py-3 rounded-xl hover:bg-primary/90 transition-all"
             >
               {editing ? "Atualizar Produto" : "Adicionar Produto"}
             </button>
@@ -177,13 +177,13 @@ const AdminDashboard = () => {
         )}
 
         <div className="space-y-3">
-          <h3 className="font-bold text-dark-foreground text-lg">Produtos Atuais ({products.length})</h3>
+          <h3 className="font-bold text-primary-foreground text-lg">Produtos Atuais ({products.length})</h3>
           {products.map((product) => (
             <div
               key={product.id}
-              className="bg-card rounded-lg border border-border p-4 flex items-center gap-4"
+              className="bg-card rounded-xl border border-primary/20 p-4 flex items-center gap-4"
             >
-              <div className="w-16 h-16 rounded-md overflow-hidden bg-muted flex-shrink-0">
+              <div className="w-16 h-16 rounded-lg overflow-hidden bg-muted flex-shrink-0">
                 <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
               </div>
               <div className="flex-1 min-w-0">

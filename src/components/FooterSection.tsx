@@ -6,7 +6,7 @@ const FooterSection = () => {
     <footer className="bg-dark text-dark-foreground py-12">
       <div className="container px-4 max-w-4xl mx-auto">
         <div className="flex flex-col items-center text-center gap-6">
-          <img src={logo} alt="Chérie Luxe" className="h-24 w-auto" />
+          <img src={logo} alt="Chérie Luxe" className="h-48 w-auto" />
 
           <div className="flex flex-col gap-1 text-sm text-dark-foreground/70">
             <p>Paraná - Brasil</p>
