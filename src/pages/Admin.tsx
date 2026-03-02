@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getProducts, saveProducts, type Product } from "@/lib/products";
 import { Plus, Trash2, Pencil, Save, LogIn, X } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-hero.png";
 
 const AdminLogin = ({ onLogin }: { onLogin: () => void }) => {
   const [password, setPassword] = useState("");
