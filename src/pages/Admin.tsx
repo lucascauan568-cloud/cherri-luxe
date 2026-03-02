@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getProducts, saveProducts, type Product } from "@/lib/products";
-import { Crown, Plus, Trash2, Pencil, Save, LogIn, X } from "lucide-react";
+import { Plus, Trash2, Pencil, Save, LogIn, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const AdminLogin = ({ onLogin }: { onLogin: () => void }) => {
   const [password, setPassword] = useState("");
@@ -19,7 +20,7 @@ const AdminLogin = ({ onLogin }: { onLogin: () => void }) => {
     <div className="min-h-screen bg-dark flex items-center justify-center p-4">
       <div className="bg-card rounded-lg shadow-premium p-8 w-full max-w-sm">
         <div className="flex items-center justify-center gap-2 mb-6">
-          <Crown className="h-8 w-8 text-gold" />
+          <img src={logo} alt="Chérie Luxe" className="h-10 w-auto" />
           <h1 className="text-xl font-bold text-foreground">Admin</h1>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -108,7 +109,7 @@ const AdminDashboard = () => {
       <header className="bg-card border-b border-border px-4 py-4">
         <div className="container flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Crown className="h-6 w-6 text-gold" />
+            <img src={logo} alt="Chérie Luxe" className="h-8 w-auto" />
             <h1 className="text-lg font-bold text-foreground">
               Área Admin – <span className="text-gold">Gerencie Seus Produtos</span>
             </h1>

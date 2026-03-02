@@ -1,16 +1,12 @@
-import { Crown, Mail, Phone, Instagram, Facebook, Twitter } from "lucide-react";
+import { Mail, Phone, Instagram, Facebook, Twitter } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const FooterSection = () => {
   return (
     <footer className="bg-dark text-dark-foreground py-12">
       <div className="container px-4 max-w-4xl mx-auto">
         <div className="flex flex-col items-center text-center gap-6">
-          <div className="flex items-center gap-2">
-            <Crown className="h-6 w-6 text-gold" />
-            <span className="text-xl font-bold">
-              Recomendações <span className="text-gold">Premium</span>
-            </span>
-          </div>
+          <img src={logo} alt="Chérie Luxe" className="h-12 w-auto brightness-200" />
 
           <div className="flex flex-col gap-1 text-sm text-dark-foreground/70">
             <p>Duque de Caxias, RJ</p>
@@ -37,7 +33,7 @@ const FooterSection = () => {
           </div>
 
           <p className="text-gold font-semibold text-sm">
-            Recomendações Premium – Suas Compras Inteligentes Começam Aqui!
+            Chérie Luxe – Suas Compras Inteligentes Começam Aqui!
           </p>
 
           <p className="text-xs text-dark-foreground/40 max-w-md">
