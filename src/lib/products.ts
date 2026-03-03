@@ -1,3 +1,5 @@
+import { supabase } from "@/integrations/supabase/client";
+
 export interface Product {
   id: string;
   name: string;
@@ -7,60 +9,83 @@ export interface Product {
   affiliateLink: string;
 }
 
-import smartphoneImg from "@/assets/product-smartphone.jpg";
-import shoesImg from "@/assets/product-shoes.jpg";
-import blenderImg from "@/assets/product-blender.jpg";
-import bookImg from "@/assets/product-book.jpg";
+export async function fetchProducts(): Promise<Product[]> {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .order("created_at", { ascending: true });
 
-export const defaultProducts: Product[] = [
-  {
-    id: "1",
-    name: "Smartphone Premium",
-    description: "Tela AMOLED, câmera 108MP – link Amazon",
-    price: "R$ 2.499,90",
-    image: smartphoneImg,
-    affiliateLink: "https://afiliado.com/produto?ref=seu-id",
-  },
-  {
-    id: "2",
-    name: "Tênis Esportivo",
-    description: "Conforto e estilo para corridas – link Shopee",
-    price: "R$ 299,90",
-    image: shoesImg,
-    affiliateLink: "https://afiliado.com/produto?ref=seu-id",
-  },
-  {
-    id: "3",
-    name: "Liquidificador Potente",
-    description: "Multifuncional para cozinha – link Magazine Luiza",
-    price: "R$ 149,90",
-    image: blenderImg,
-    affiliateLink: "https://afiliado.com/produto?ref=seu-id",
-  },
-  {
-    id: "4",
-    name: "Livro Best-Seller",
-    description: "Leitura inspiradora – link Submarino",
-    price: "R$ 39,90",
-    image: bookImg,
-    affiliateLink: "https://afiliado.com/produto?ref=seu-id",
-  },
-];
-
-const STORAGE_KEY = "premium-products";
-
-export function getProducts(): Product[] {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored) {
-    try {
-      return JSON.parse(stored);
-    } catch {
-      return defaultProducts;
-    }
+  if (error) {
+    console.error("Erro ao buscar produtos:", error);
+    return [];
   }
-  return defaultProducts;
+
+  return (data || []).map((p) => ({
+    id: p.id,
+    name: p.name,
+    description: p.description || "",
+    price: p.price,
+    image: p.image || "",
+    affiliateLink: p.affiliate_link || "",
+  }));
 }
 
-export function saveProducts(products: Product[]): void {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+export async function addProduct(product: Omit<Product, "id">): Promise<Product | null> {
+  const { data, error } = await supabase
+    .from("products")
+    .insert({
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      image: product.image,
+      affiliate_link: product.affiliateLink,
+    })
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Erro ao adicionar produto:", error);
+    return null;
+  }
+
+  return {
+    id: data.id,
+    name: data.name,
+    description: data.description || "",
+    price: data.price,
+    image: data.image || "",
+    affiliateLink: data.affiliate_link || "",
+  };
+}
+
+export async function updateProduct(id: string, product: Omit<Product, "id">): Promise<boolean> {
+  const { error } = await supabase
+    .from("products")
+    .update({
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      image: product.image,
+      affiliate_link: product.affiliateLink,
+    })
+    .eq("id", id);
+
+  if (error) {
+    console.error("Erro ao atualizar produto:", error);
+    return false;
+  }
+  return true;
+}
+
+export async function deleteProduct(id: string): Promise<boolean> {
+  const { error } = await supabase
+    .from("products")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error("Erro ao remover produto:", error);
+    return false;
+  }
+  return true;
 }
