@@ -1,8 +1,13 @@
+import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { getProducts } from "@/lib/products";
+import { fetchProducts, type Product } from "@/lib/products";
 
 const ProductsSection = () => {
-  const products = getProducts();
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    fetchProducts().then(setProducts);
+  }, []);
 
   return (
     <section id="produtos" className="py-16 bg-background">
