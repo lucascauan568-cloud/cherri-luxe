@@ -35,7 +35,8 @@ const HeroSection = () => {
         <img
           src={logoHero}
           alt="Chérie Luxe"
-          className="mx-auto mb-6 h-52 sm:h-64 md:h-80 w-auto drop-shadow-[0_4px_20px_rgba(255,255,255,0.3)]"
+          className="mx-auto mb-6 h-52 sm:h-64 md:h-80 w-auto drop-shadow-[0_2px_8px_rgba(255,255,255,0.25)]"
+          style={{ imageRendering: 'auto' }}
         />
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-primary-foreground leading-tight mb-4 drop-shadow-lg">
           Descubra Produtos Incríveis com Preços Imperdíveis!
