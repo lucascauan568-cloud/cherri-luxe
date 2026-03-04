@@ -10,7 +10,7 @@ const StickyHeader = () => {
         >
           Ver Ofertas
         </a>
-        <img src={logo} alt="Chérie Luxe" className="h-14 w-auto" />
+        <img src={logo} alt="Chérie Luxe" className="h-14 w-auto" style={{ imageRendering: 'auto', WebkitFontSmoothing: 'antialiased' }} />
       </div>
     </header>
   );
