@@ -13,7 +13,8 @@ const StickyHeader = () => {
         <img
           src={logo}
           alt="Chérie Luxe"
-          className="h-20 sm:h-24 w-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
+          className="h-16 sm:h-18 w-auto drop-shadow-[0_1px_2px_rgba(0,0,0,0.08)]"
+          style={{ imageRendering: '-webkit-optimize-contrast' }}
         />
       </div>
     </header>
